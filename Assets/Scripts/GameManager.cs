@@ -38,11 +38,11 @@ namespace TestGwentGame {
                 return;
             }
 
-            _currentTeam = _currentTeam.EnemyTeam;
             if (_currentTeam == _aiTeam) {
                 EndTurn();
             }
 
+            _currentTeam = _currentTeam.EnemyTeam;
             _currentTeam.StartTeamTurn();
         }
 

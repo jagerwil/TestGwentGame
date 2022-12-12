@@ -12,9 +12,9 @@ namespace TestGwentGame {
                 var targetIndex = Random.Range(0, targets.Count);
 
                 var target = targets[targetIndex];
-                UsePawn(pawn, target);
 
                 Debug.Log($"Use effect of pawn {pawn.DebugName} on target {target.DebugName}");
+                UsePawn(pawn, target);
             }
         }
     }
