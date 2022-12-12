@@ -20,13 +20,13 @@ namespace TestGwentGame {
         }
 
         void OnEnable() {
-            BaseTeam.onTurnEnded += SwitchSides;
-            BaseTeam.onTeamDied  += OnTeamDied;
+            EventManager.onTeamTurnEnded.AddListener(SwitchSides);
+            EventManager.onTeamDied.AddListener(OnTeamDied);
         }
 
         void OnDisable() {
-            BaseTeam.onTurnEnded -= SwitchSides;
-            BaseTeam.onTeamDied  -= OnTeamDied;
+            EventManager.onTeamTurnEnded.RemoveListener(SwitchSides);
+            EventManager.onTeamDied.RemoveListener(OnTeamDied);
         }
 
         void Start() {

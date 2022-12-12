@@ -7,8 +7,6 @@ namespace TestGwentGame {
         [SerializeField] int    _maxHealth = 10;
         [SerializeField] PawnAction _action;
 
-        public event Action onDied;
-
         int  _curHealth;
 
         public PawnAction Action => _action;
@@ -41,7 +39,7 @@ namespace TestGwentGame {
         void Die() {
             Debug.Log("Pawn is ded");
             gameObject.SetActive(false);
-            onDied?.Invoke();
+            EventManager.onPawnDied.Invoke(this);
         }
     }
 }

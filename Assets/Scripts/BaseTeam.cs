@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,9 +6,6 @@ namespace TestGwentGame {
     public abstract class BaseTeam : MonoBehaviour {
         [SerializeField] protected List<Pawn> _pawns;
 
-        public static event Action           onTurnEnded;
-        public static event Action<BaseTeam> onTeamDied;
-
         public BaseTeam EnemyTeam { get; private set; }
         
         public void Setup(BaseTeam oppositeTeam) {
@@ -17,15 +13,11 @@ namespace TestGwentGame {
         }
 
         void OnEnable() {
-            foreach (var pawn in _pawns) {
-                pawn.onDied += OnPawnDied;
-            }
+            EventManager.onPawnDied.AddListener(OnPawnDied);
         }
 
         void OnDisable() {
-            foreach (var pawn in _pawns) {
-                pawn.onDied -= OnPawnDied;
-            }
+            EventManager.onPawnDied.RemoveListener(OnPawnDied);
         }
 
         public virtual void StartTeamTurn() {
@@ -40,7 +32,7 @@ namespace TestGwentGame {
             }
 
             if (_pawns.All(a => a.Action.WasUsed)) {
-                onTurnEnded?.Invoke();
+                EventManager.onTeamTurnEnded.Invoke();
             }
         }
 
@@ -64,10 +56,10 @@ namespace TestGwentGame {
             return targets;
         }
 
-        void OnPawnDied() {
+        void OnPawnDied(Pawn pawn) {
             if (_pawns.All(pawn => pawn.IsDead)) {
                 Debug.Log("The entire team is ded!");
-                onTeamDied?.Invoke(this);
+                EventManager.onTeamDied.Invoke(this);
             }
         }
     }
