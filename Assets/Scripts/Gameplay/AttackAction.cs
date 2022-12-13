@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TestGwentGame {
+namespace TestGwentGame.Gameplay {
     public sealed class AttackAction : PawnAction {
         [SerializeField] int _damage = 3;
         

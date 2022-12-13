@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TestGwentGame {
+namespace TestGwentGame.Gameplay {
     public abstract class PawnAction : MonoBehaviour {
         public bool WasUsed { get; private set; } = false;
 

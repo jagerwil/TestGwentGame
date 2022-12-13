@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TestGwentGame {
+namespace TestGwentGame.Gameplay {
     public class PlayerTeam : BaseTeam {
         public override void StartTeamTurn() {
             base.StartTeamTurn();

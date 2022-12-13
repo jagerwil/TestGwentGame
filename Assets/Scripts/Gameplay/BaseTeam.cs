@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using TestGwentGame.Core;
 using UnityEngine;
 
-namespace TestGwentGame {
+namespace TestGwentGame.Gameplay {
     public abstract class BaseTeam : MonoBehaviour {
         [SerializeField] protected List<Pawn> _pawns;
 

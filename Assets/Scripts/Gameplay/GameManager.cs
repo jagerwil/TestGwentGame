@@ -1,6 +1,7 @@
+using TestGwentGame.Core;
 using UnityEngine;
 
-namespace TestGwentGame {
+namespace TestGwentGame.Gameplay {
     public sealed class GameManager : MonoBehaviour {
         [SerializeField] BaseTeam _playerTeam;
         [SerializeField] BaseTeam _aiTeam;

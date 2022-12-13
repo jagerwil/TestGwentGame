@@ -1,7 +1,7 @@
-using System;
+using TestGwentGame.Core;
 using UnityEngine;
 
-namespace TestGwentGame {
+namespace TestGwentGame.Gameplay {
     [RequireComponent(typeof(PawnAction))]
     public sealed class Pawn : MonoBehaviour {
         [SerializeField] int    _maxHealth = 10;

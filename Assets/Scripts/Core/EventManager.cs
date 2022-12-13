@@ -1,5 +1,6 @@
+using TestGwentGame.Gameplay;
 
-namespace TestGwentGame {
+namespace TestGwentGame.Core {
     public static class EventManager {
         public static readonly Evt onTeamTurnEnded = new();
         public static readonly Evt<BaseTeam> onTeamDied = new();
