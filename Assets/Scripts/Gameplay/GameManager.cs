@@ -1,8 +1,7 @@
-using TestGwentGame.Core;
 using UnityEngine;
 
 namespace TestGwentGame.Gameplay {
-    public sealed class GameManager : MonoBehaviour {
+    public sealed class GameManager : Singleton<GameManager> {
         [SerializeField] BaseTeam _playerTeam;
         [SerializeField] BaseTeam _aiTeam;
 
@@ -10,11 +9,12 @@ namespace TestGwentGame.Gameplay {
         int      _currentTurn;
         BaseTeam _currentTeam;
 
-        void Awake() {
-            _currentTeam = _playerTeam;
+        public BaseTeam PlayerTeam => _playerTeam;
+        public BaseTeam AiTeam     => _aiTeam;
 
-            _playerTeam.Setup(_aiTeam);
-            _aiTeam.Setup(_playerTeam);
+        protected override void Awake() {
+            base.Awake();
+            _currentTeam = _playerTeam;
 
             _currentTurn = 0;
             EndTurn();
@@ -31,6 +31,9 @@ namespace TestGwentGame.Gameplay {
         }
 
         void Start() {
+            _playerTeam.Setup(_aiTeam);
+            _aiTeam.Setup(_playerTeam);
+
             _currentTeam.StartTeamTurn();
         }
 

@@ -1,6 +1,6 @@
 using System;
 
-namespace TestGwentGame.Core {
+namespace TestGwentGame {
     public sealed class Evt {
         event Action evt;
 

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using TestGwentGame.Core;
 using UnityEngine;
 
 namespace TestGwentGame.Gameplay {
@@ -8,6 +7,7 @@ namespace TestGwentGame.Gameplay {
         [SerializeField] protected List<Pawn> _pawns;
 
         public BaseTeam EnemyTeam { get; private set; }
+        public List<Pawn> Pawns => _pawns;
         
         public void Setup(BaseTeam oppositeTeam) {
             EnemyTeam = oppositeTeam;
@@ -39,7 +39,7 @@ namespace TestGwentGame.Gameplay {
 
         public List<Pawn> GetPawnTargets(Pawn pawn) {
             var effect     = pawn.Action;
-            var enemyPawns = EnemyTeam._pawns;
+            var enemyPawns = EnemyTeam.Pawns;
             var targets    = new List<Pawn>(_pawns.Count + enemyPawns.Count);
 
             if (effect.CanUseOn(TargetType.Enemy)) {

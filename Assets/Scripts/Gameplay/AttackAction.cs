@@ -11,7 +11,7 @@ namespace TestGwentGame.Gameplay {
                 return false;
             }
 
-            target.ChangeHealth(-1 * _damage);
+            target.HealthInfo.TakeDamage(_damage);
             return true;
         }
     }
