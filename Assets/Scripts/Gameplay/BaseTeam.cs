@@ -5,6 +5,8 @@ using UnityEngine;
 namespace TestGwentGame.Gameplay {
     public abstract class BaseTeam : MonoBehaviour {
         [SerializeField] protected List<Pawn> _pawns;
+        
+        public abstract TeamType TeamType { get; }
 
         public BaseTeam EnemyTeam { get; private set; }
         public List<Pawn> Pawns => _pawns;
@@ -37,6 +39,10 @@ namespace TestGwentGame.Gameplay {
             foreach (var pawn in _pawns) {
                 pawn.StartTeamTurn();
             }
+        }
+
+        public void EndTeamTurn() {
+            EventManager.onTeamTurnEnded.Invoke(TeamType);
         }
 
         public List<Pawn> GetPawnTargets(Pawn pawn) {
@@ -76,13 +82,13 @@ namespace TestGwentGame.Gameplay {
             if (_pawns.All(pawn => pawn.IsDead)) {
                 Debug.Log("The entire team is ded!");
                 gameObject.SetActive(false);
-                EventManager.onTeamDied.Invoke(this);
+                EventManager.onTeamDied.Invoke(TeamType);
             }
         }
 
         void OnPawnUsed() {
             if (_pawns.All(a => a.Action.WasUsed)) {
-                EventManager.onTeamTurnEnded.Invoke();
+                EndTeamTurn();
             }
         }
     }

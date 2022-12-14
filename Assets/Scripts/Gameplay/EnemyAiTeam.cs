@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace TestGwentGame.Gameplay {
     public sealed class EnemyAiTeam : BaseTeam {
+        public override TeamType TeamType => TeamType.Ai;
+
         Coroutine _startTurnCoro;
         
         public override void StartTeamTurn() {
@@ -12,9 +14,12 @@ namespace TestGwentGame.Gameplay {
             _startTurnCoro = StartCoroutine(StartTurnCoro());
         }
 
+
         public override void Refresh() {
             base.Refresh();
-            StopCoroutine(_startTurnCoro);
+            if (_startTurnCoro != null) {
+                StopCoroutine(_startTurnCoro);
+            }
         }
 
         IEnumerator StartTurnCoro() {

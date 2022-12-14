@@ -1,4 +1,3 @@
-using TestGwentGame.UI;
 using UnityEngine;
 
 namespace TestGwentGame.Gameplay {
@@ -19,21 +18,24 @@ namespace TestGwentGame.Gameplay {
         }
 
         void OnEnable() {
-            EventManager.onTeamTurnEnded.AddListener(SwitchSides);
-            EventManager.onTeamDied.AddListener(OnTeamDied);
+            EventManager.onTeamTurnEnded.AddListener(OnTeamTurnEnded);
+
+            EventManager.Input.onRefreshKeyPressed.AddListener(Refresh);
+            EventManager.Input.onEndTurnKeyPressed.AddListener(EndPlayerTurn);
         }
 
         void OnDisable() {
-            EventManager.onTeamTurnEnded.RemoveListener(SwitchSides);
-            EventManager.onTeamDied.RemoveListener(OnTeamDied);
+            EventManager.onTeamTurnEnded.RemoveListener(OnTeamTurnEnded);
+
+            EventManager.Input.onRefreshKeyPressed.RemoveListener(Refresh);
+            EventManager.Input.onEndTurnKeyPressed.RemoveListener(EndPlayerTurn);
         }
 
         void Start() => Init();
 
-        void Update() {
-            if (Input.GetKeyDown(KeyCode.R)) {
-                Refresh();
-                UiManager.Instance.Refresh();
+        public void EndPlayerTurn() {
+            if (_currentTeam == _playerTeam) {
+                SwitchSides();
             }
         }
 
@@ -76,11 +78,7 @@ namespace TestGwentGame.Gameplay {
             EventManager.onTurnStarted.Invoke();
         }
 
-        void OnTeamDied(BaseTeam team) {
-            var teamName = team == _aiTeam ? "<color=green>Player</color>" : "<color=red>AI</color>";
-            Debug.Log($"{teamName} team wins!");
-            _isGameEnded = true;
-        }
+        void OnTeamTurnEnded(TeamType teamType) => SwitchSides();
     }
 }
 
