@@ -15,6 +15,11 @@ namespace TestGwentGame.UI {
             _actionUi.Setup(pawn);
         }
 
+        public void Refresh() {
+            SetupPawnHealth();
+            _actionUi.Refresh();
+        }
+
         void OnEnable() {
             EventManager.onPawnHealthChanged.AddListener(OnHealthChanged);
         }

@@ -15,6 +15,12 @@ namespace TestGwentGame.UI {
 
         List<PawnUi> _pawnsUi = new List<PawnUi>();
 
+        public void Refresh() {
+            foreach (var pawnUi in _pawnsUi) {
+                pawnUi.Refresh();
+            }
+        }
+
         void Start() {
             var mainCamera = Camera.main;
             var placementHeight = _uiPlacementHeight.position.y;

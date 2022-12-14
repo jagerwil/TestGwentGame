@@ -37,6 +37,9 @@ namespace TestGwentGame.Gameplay {
             _action.Setup(actionUsedCallback);
         }
 
+        public void Refresh() {
+            Setup();
+        }
 
         public void StartTeamTurn() {
             _action.RefreshUsages();

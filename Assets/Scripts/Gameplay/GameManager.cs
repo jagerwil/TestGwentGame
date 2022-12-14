@@ -1,3 +1,4 @@
+using TestGwentGame.UI;
 using UnityEngine;
 
 namespace TestGwentGame.Gameplay {
@@ -29,6 +30,13 @@ namespace TestGwentGame.Gameplay {
 
         void Start() => Init();
 
+        void Update() {
+            if (Input.GetKeyDown(KeyCode.R)) {
+                Refresh();
+                UiManager.Instance.Refresh();
+            }
+        }
+
         void Setup() {
             _currentTeam = _playerTeam;
             _currentTurn = 0;
@@ -39,6 +47,13 @@ namespace TestGwentGame.Gameplay {
             _playerTeam.Init(_aiTeam);
             _aiTeam.Init(_playerTeam);
 
+            _currentTeam.StartTeamTurn();
+        }
+
+        void Refresh() {
+            Setup();
+            _playerTeam.Refresh();
+            _aiTeam.Refresh();
             _currentTeam.StartTeamTurn();
         }
 

@@ -18,6 +18,13 @@ namespace TestGwentGame.Gameplay {
             }
         }
 
+        public virtual void Refresh() {
+            gameObject.SetActive(true);
+            foreach (var pawn in _pawns) {
+                pawn.Refresh();
+            }
+        }
+
         void OnEnable() {
             EventManager.onPawnDied.AddListener(OnPawnDied);
         }

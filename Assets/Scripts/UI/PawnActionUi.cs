@@ -17,6 +17,11 @@ namespace TestGwentGame.UI {
             _pawn = pawn;
         }
 
+        public void Refresh() {
+            gameObject.SetActive(true);
+            transform.localPosition = _initialPosition;
+        }
+
         void OnEnable() {
             EventManager.onTurnStarted.AddListener(OnTurnStarted);
         }
