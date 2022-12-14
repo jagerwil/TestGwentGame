@@ -17,6 +17,14 @@ namespace TestGwentGame.UI {
             _pawn = pawn;
         }
 
+        void OnEnable() {
+            EventManager.onTurnStarted.AddListener(OnTurnStarted);
+        }
+
+        void OnDisable() {
+            EventManager.onTurnStarted.RemoveListener(OnTurnStarted);
+        }
+
         void Update() {
             if ( !_isDragging ) {
                 return;
@@ -37,6 +45,29 @@ namespace TestGwentGame.UI {
 
             transform.SetParent(_initialParent);
             transform.localPosition = _initialPosition;
+
+            var mainCamera = Camera.main;
+            if ( !mainCamera ) {
+                Debug.LogError("PawnActionUi.OnPointerUp: main camera is not found");
+                return;
+            }
+            
+            var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if ( !Physics.Raycast(ray, out var hit )) {
+                return;
+            }
+
+            var targetPawn = hit.transform.GetComponent<Pawn>();
+            if (!targetPawn) {
+                return;
+            }
+
+            _pawn.TryUseAction(targetPawn);
+            gameObject.SetActive(!_pawn.Action.WasUsed);
+        }
+
+        void OnTurnStarted() {
+            gameObject.SetActive(true);
         }
     }
 }
