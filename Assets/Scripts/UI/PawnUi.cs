@@ -12,6 +12,7 @@ namespace TestGwentGame.UI {
         public void Setup(Pawn pawn) {
             _pawn = pawn;
             SetupPawnHealth();
+            _actionUi.Setup(pawn);
         }
 
         void OnEnable() {

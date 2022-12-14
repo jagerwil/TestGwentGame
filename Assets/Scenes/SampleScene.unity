@@ -634,6 +634,7 @@ GameObject:
   - component: {fileID: 1103036168}
   - component: {fileID: 1103036169}
   - component: {fileID: 1103036170}
+  - component: {fileID: 1103036171}
   m_Layer: 0
   m_Name: Pawn
   m_TagString: Untagged
@@ -684,6 +685,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 3
+--- !u!65 &1103036171
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103036167}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1125129938
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +709,7 @@ GameObject:
   - component: {fileID: 1125129941}
   - component: {fileID: 1125129940}
   - component: {fileID: 1125129939}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -960,6 +974,7 @@ GameObject:
   - component: {fileID: 1404032588}
   - component: {fileID: 1404032589}
   - component: {fileID: 1404032590}
+  - component: {fileID: 1404032591}
   m_Layer: 0
   m_Name: Pawn
   m_TagString: Untagged
@@ -1010,6 +1025,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 3
+--- !u!65 &1404032591
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404032587}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1643543508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,7 +1223,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &8812560368998889601
 RectTransform:
@@ -1292,7 +1320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1134592887e586b44898513034274c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pawnUiPrefab: {fileID: 6241897965340242267, guid: 03c60b3dd11f12846a5173b2f2946a73, type: 3}
+  _playerPawnUiPrefab: {fileID: 6241897965340242267, guid: 03c60b3dd11f12846a5173b2f2946a73, type: 3}
+  _aiPawnUiPrefab: {fileID: 381529456457803397, guid: efd65ce5e6202be4ca1ec0044bba7575, type: 3}
   _pawnsUiHolder: {fileID: 1304326029}
   _dragAndDropRoot: {fileID: 649858485}
   _uiPlacementHeight: {fileID: 116712782}
