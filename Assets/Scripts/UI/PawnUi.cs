@@ -3,15 +3,14 @@ using UnityEngine;
 
 namespace TestGwentGame.UI {
     public sealed class PawnUi : MonoBehaviour {
-        [SerializeField] Canvas   _canvas;
-        [SerializeField] HealthUi _healthUi;
-        [SerializeField] HealthUi _extraHealthUi;
+        [SerializeField] PawnHealthUi _healthUi;
+        [SerializeField] PawnHealthUi _extraHealthUi;
+        [SerializeField] PawnActionUi _actionUi;
 
         Pawn _pawn;
 
-        public void Setup(Pawn pawn, Camera worldCamera) {
+        public void Setup(Pawn pawn) {
             _pawn = pawn;
-            _canvas.worldCamera = worldCamera;
             SetupPawnHealth();
         }
 
