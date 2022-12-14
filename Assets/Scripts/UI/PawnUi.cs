@@ -2,7 +2,7 @@ using TestGwentGame.Gameplay;
 using UnityEngine;
 
 namespace TestGwentGame.UI {
-    public class PawnUi : MonoBehaviour {
+    public sealed class PawnUi : MonoBehaviour {
         [SerializeField] Canvas   _canvas;
         [SerializeField] HealthUi _healthUi;
         [SerializeField] HealthUi _extraHealthUi;

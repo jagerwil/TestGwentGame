@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 namespace TestGwentGame.Gameplay {
-    public class EnemyAiTeam : BaseTeam {
+    public sealed class EnemyAiTeam : BaseTeam {
         public override void StartTeamTurn() {
             base.StartTeamTurn();
             Debug.Log("<color=orange>It's enemy turn!</color>");

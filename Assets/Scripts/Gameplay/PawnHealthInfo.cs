@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace TestGwentGame.Gameplay {
-    public class PawnHealthInfo {
+    public sealed class PawnHealthInfo {
         public int  Health { get; private set; }
         public bool IsDead => Health <= 0;
 
