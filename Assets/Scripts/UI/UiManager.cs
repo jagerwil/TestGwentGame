@@ -1,52 +1,38 @@
-using System.Collections.Generic;
-using TestGwentGame.Gameplay;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TestGwentGame.UI {
     public sealed class UiManager : Singleton<UiManager> {
-        [SerializeField] PawnUi    _playerPawnUiPrefab;
-        [SerializeField] PawnUi    _aiPawnUiPrefab;
-        [SerializeField] Transform _pawnsUiHolder;
-        [Space]
-        [SerializeField] Transform _dragAndDropRoot;
-        [SerializeField] Transform _uiPlacementHeight;
+        [SerializeField] PawnsUiHolder _pawnsUiHolder;
+        [SerializeField] Transform     _dragAndDropRoot;
+        [SerializeField] Button        _endTurnButton;
+        [SerializeField] EndScreenUi   _endScreenUi;
 
         public Transform DragAndDropRoot => _dragAndDropRoot;
 
-        List<PawnUi> _pawnsUi = new List<PawnUi>();
-
-        public void Refresh() {
-            foreach (var pawnUi in _pawnsUi) {
-                pawnUi.Refresh();
-            }
-        }
-
         void Start() {
-            var mainCamera = Camera.main;
-            var placementHeight = _uiPlacementHeight.position.y;
-
-            var playerTeam = GameManager.Instance.PlayerTeam;
-            SpawnTeamUi(playerTeam, _playerPawnUiPrefab, mainCamera, placementHeight);
-
-            var aiTeam = GameManager.Instance.AiTeam;
-            SpawnTeamUi(aiTeam, _aiPawnUiPrefab, mainCamera, placementHeight);
+            _endTurnButton.enabled = true;
         }
 
-        void SpawnTeamUi(BaseTeam team, PawnUi prefab, Camera mainCamera, float placementHeight) {
-            var pawns = team.Pawns;
-            foreach ( var pawn in pawns ) {
-                var uiWorldPos = pawn.transform.position;
-                uiWorldPos.y = placementHeight;
+        void OnEnable() {
+            EventManager.onTeamTurnEnded.AddListener(OnTeamTurnEnded);
+            EventManager.Input.onRefreshKeyPressed.AddListener(Refresh);
+        }
 
-                var uiScreenPos = mainCamera.WorldToScreenPoint(uiWorldPos);
-                uiScreenPos.z = 0f;
+        void OnDisable() {
+            EventManager.onTeamTurnEnded.RemoveListener(OnTeamTurnEnded);
+            EventManager.Input.onRefreshKeyPressed.RemoveListener(Refresh);
+        }
 
-                var pawnUi = prefab.CreateInstance(_pawnsUiHolder);
-                pawnUi.transform.position = uiScreenPos;
-                
-                pawnUi.Setup(pawn);
-                _pawnsUi.Add(pawnUi);
-            }
+        void Refresh() {
+            _endTurnButton.enabled = true;
+            _pawnsUiHolder.Refresh();
+            _endScreenUi.Refresh();
+        }
+
+        void OnTeamTurnEnded(TeamType teamType) {
+            var isPlayerTurn = teamType == TeamType.Ai;
+            _endTurnButton.enabled = isPlayerTurn;
         }
     }
 }
