@@ -10,7 +10,9 @@ namespace TestGwentGame.Gameplay {
         }
 
         public void StartTurn(int turn) {
-            
+            foreach (var effect in _statusEffects.Values) {
+                effect.Tick();
+            }
         }
 
         public void AddStatusEffect(BaseStatusEffect effect) {

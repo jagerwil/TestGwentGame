@@ -9,7 +9,6 @@ namespace TestGwentGame.Gameplay {
         public override StatusEffectType EffectType => StatusEffectType.Attack;
         
         public AttackStatusEffect() { }
-
         public AttackStatusEffect(int duration, int damage) : base(duration) {
             _damage = damage;
         }

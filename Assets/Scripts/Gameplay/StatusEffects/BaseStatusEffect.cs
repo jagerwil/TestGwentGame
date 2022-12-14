@@ -17,7 +17,7 @@ namespace TestGwentGame.Gameplay {
             _duration = duration;
         }
 
-        public bool IsEffectActive() => _turnsLeft == 0;
+        public bool IsEffectActive() => _turnsLeft > 0;
 
         public virtual void StartEffect(Pawn target) {
             _turnsLeft = _duration;
@@ -37,6 +37,8 @@ namespace TestGwentGame.Gameplay {
             switch (type) {
                 case StatusEffectType.Attack:
                     return new AttackStatusEffect();
+                case StatusEffectType.Protection:
+                    return new ProtectionStatusEffect();
                 default:
                     Debug.LogError($"BaseStatusEffect.SpawnFromEffectType: type '{type}' is not supported");
                     return null;

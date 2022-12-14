@@ -54,11 +54,11 @@ namespace TestGwentGame.Gameplay {
             var targets = new List<Pawn>(allyPawns.Count + enemyPawns.Count);
 
             if (effect.CanUseOn(TargetType.Enemy)) {
-                targets.AddRange(enemyPawns);
+                targets.AddRange(enemyPawns.Where(enemyPawn => !enemyPawn.IsDead));
             }
 
             if (effect.CanUseOn(TargetType.Ally)) {
-                targets.AddRange(allyPawns.Where(allyPawn => allyPawn != pawn));
+                targets.AddRange(allyPawns.Where(allyPawn => !allyPawn.IsDead && allyPawn != pawn));
             }
 
             if (effect.CanUseOn(TargetType.Self)) {
