@@ -9,11 +9,13 @@ namespace TestGwentGame.Gameplay {
         BaseStatusEffect _statusEffect;
         TargetType _targetType;
 
+        public bool WasUsed { get; private set; } = false;
+        public StatusEffectInfo EffectInfo => GameManager.Instance.EffectsDatabase.GetStatusEffectInfo(_effectId);
+
         BaseStatusEffect StatusEffect {
             get {
                 if (_statusEffect == null) {
-                    var effectInfo = GameManager.Instance.EffectsDatabase.GetStatusEffectInfo(_effectId);
-                    _statusEffect  = effectInfo?.Effect;
+                    _statusEffect = EffectInfo?.Effect;
                 }
                 return _statusEffect;
             }
@@ -27,8 +29,6 @@ namespace TestGwentGame.Gameplay {
                 return _targetType;
             }
         }
-
-        public bool WasUsed { get; private set; } = false;
 
         public void RefreshUsages() => WasUsed = false;
 

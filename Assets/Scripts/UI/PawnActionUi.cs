@@ -1,9 +1,12 @@
 using TestGwentGame.Gameplay;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace TestGwentGame.UI {
     public sealed class PawnActionUi : MonoBehaviour, IPointerUpHandler, IPointerDownHandler {
+        [SerializeField] Image _icon;
+        
         Pawn _pawn;
         bool _isDragging;
 
@@ -14,7 +17,12 @@ namespace TestGwentGame.UI {
         public void Setup(Pawn pawn) {
             _initialPosition = transform.localPosition;
             _initialParent   = transform.parent;
+
             _pawn = pawn;
+
+            var effectInfo = _pawn.Action.EffectInfo;
+            _icon.sprite = effectInfo.Icon;
+            _icon.color  = effectInfo.IconColor;
         }
 
         public void Refresh() {

@@ -60,6 +60,8 @@ namespace TestGwentGame {
         public string Id;
         public StatusEffectType Type;
         [SerializeReference] public BaseStatusEffect Effect;
+        public Sprite Icon;
+        public Color IconColor = Color.white;
     }
 }
 
