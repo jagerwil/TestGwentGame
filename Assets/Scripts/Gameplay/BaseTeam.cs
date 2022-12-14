@@ -8,9 +8,14 @@ namespace TestGwentGame.Gameplay {
 
         public BaseTeam EnemyTeam { get; private set; }
         public List<Pawn> Pawns => _pawns;
-        
-        public void Setup(BaseTeam oppositeTeam) {
+
+        void Awake() => gameObject.SetActive(true);
+
+        public void Init(BaseTeam oppositeTeam) {
             EnemyTeam = oppositeTeam;
+            foreach (var pawn in _pawns) {
+                pawn.Init(this, OnPawnUsed);
+            }
         }
 
         void OnEnable() {
@@ -23,17 +28,7 @@ namespace TestGwentGame.Gameplay {
 
         public virtual void StartTeamTurn() {
             foreach (var pawn in _pawns) {
-                pawn.StartTurn();
-            }
-        }
-
-        public void UsePawn(Pawn pawn, Pawn target) {
-            if ( !pawn.TryUse(target) ) {
-                return;
-            }
-
-            if (_pawns.All(a => a.Action.WasUsed)) {
-                EventManager.onTeamTurnEnded.Invoke();
+                pawn.StartTeamTurn();
             }
         }
 
@@ -57,10 +52,30 @@ namespace TestGwentGame.Gameplay {
             return targets;
         }
 
+        public TargetType GetTargetType(Pawn pawn, Pawn target) {
+            if (pawn == target) {
+                return TargetType.Self;
+            }
+            
+            var isSameTeam = _pawns.Contains(target);
+            if (isSameTeam) {
+                return TargetType.Ally;
+            }
+
+            return TargetType.Enemy;
+        }
+
         void OnPawnDied(Pawn pawn) {
             if (_pawns.All(pawn => pawn.IsDead)) {
                 Debug.Log("The entire team is ded!");
+                gameObject.SetActive(false);
                 EventManager.onTeamDied.Invoke(this);
+            }
+        }
+
+        void OnPawnUsed() {
+            if (_pawns.All(a => a.Action.WasUsed)) {
+                EventManager.onTeamTurnEnded.Invoke();
             }
         }
     }

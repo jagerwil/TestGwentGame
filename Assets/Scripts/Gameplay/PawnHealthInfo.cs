@@ -19,11 +19,11 @@ namespace TestGwentGame.Gameplay {
             }
         }
 
-        SortedList<int, int> _extraHealthContainer; //key - turns left, value - extra health amount
+        //key - turns left, value - extra health amount
+        SortedList<int, int> _extraHealthContainer = new SortedList<int, int>(); 
 
-        public PawnHealthInfo(int health) {
-            Health      = health;
-            _extraHealthContainer = new SortedList<int, int>();
+        public void Setup(int health) {
+            Health = health;
         }
 
         public void AddHealth(int deltaHealth) {

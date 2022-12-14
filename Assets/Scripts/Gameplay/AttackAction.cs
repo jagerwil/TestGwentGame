@@ -6,8 +6,8 @@ namespace TestGwentGame.Gameplay {
         
         protected override TargetType TargetType => TargetType.Enemy;
 
-        public override bool TryUse(Pawn target) {
-            if ( !base.TryUse(target) ) {
+        public override bool TryUse(Pawn target, TargetType targetType) {
+            if ( !base.TryUse(target, targetType) ) {
                 return false;
             }
 

@@ -14,10 +14,7 @@ namespace TestGwentGame.Gameplay {
 
         protected override void Awake() {
             base.Awake();
-            _currentTeam = _playerTeam;
-
-            _currentTurn = 0;
-            EndTurn();
+            Setup();
         }
 
         void OnEnable() {
@@ -30,9 +27,17 @@ namespace TestGwentGame.Gameplay {
             EventManager.onTeamDied.RemoveListener(OnTeamDied);
         }
 
-        void Start() {
-            _playerTeam.Setup(_aiTeam);
-            _aiTeam.Setup(_playerTeam);
+        void Start() => Init();
+
+        void Setup() {
+            _currentTeam = _playerTeam;
+            _currentTurn = 0;
+            EndTurn();
+        }
+
+        void Init() {
+            _playerTeam.Init(_aiTeam);
+            _aiTeam.Init(_playerTeam);
 
             _currentTeam.StartTeamTurn();
         }
@@ -53,6 +58,7 @@ namespace TestGwentGame.Gameplay {
         void EndTurn() {
             _currentTurn += 1;
             Debug.Log($"Turn {_currentTurn}");
+            EventManager.onTurnStarted.Invoke();
         }
 
         void OnTeamDied(BaseTeam team) {
