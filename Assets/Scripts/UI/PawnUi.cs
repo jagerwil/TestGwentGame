@@ -5,6 +5,7 @@ namespace TestGwentGame.UI {
     public sealed class PawnUi : MonoBehaviour {
         [SerializeField] PawnHealthUi _healthUi;
         [SerializeField] PawnHealthUi _extraHealthUi;
+        [SerializeField] GameObject   _poisonIcon;
         [SerializeField] PawnActionUi _actionUi;
 
         Pawn _pawn;
@@ -39,9 +40,9 @@ namespace TestGwentGame.UI {
                 return;
             }
 
-            var healthInfo = _pawn.HealthInfo;
+            var healthInfo = _pawn.Health;
             _healthUi.SetupHealth(healthInfo.Health);
-            _extraHealthUi.SetupHealth(healthInfo.TotalExtraHealth);
+            _extraHealthUi.SetupHealth(healthInfo.ExtraHealth);
         }
 
         void OnHealthChanged(Pawn pawn) {

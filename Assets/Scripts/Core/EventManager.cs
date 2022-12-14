@@ -2,7 +2,7 @@ using TestGwentGame.Gameplay;
 
 namespace TestGwentGame {
     public static class EventManager {
-        public static readonly Evt onTurnStarted = new();
+        public static readonly Evt<int> onTurnStarted = new();
         
         public static readonly Evt<TeamType> onTeamTurnEnded = new();
         public static readonly Evt<TeamType> onTeamDied = new();

@@ -1,0 +1,25 @@
+using System.Collections.Generic;
+
+namespace TestGwentGame.Gameplay {
+    public sealed class StatusEffectsContainer {
+        List<BaseStatusEffect> _effects = new();
+
+        public bool HasEffects => _effects.Count > 0;
+
+        public void AddEffect(BaseStatusEffect effect) {
+            _effects.Add(effect);
+        }
+
+        public void RemoveAllEffects() {
+            _effects.Clear();
+        }
+
+        public void Tick() {
+            foreach (var effect in _effects) {
+                effect.Tick();
+            }
+
+            _effects.RemoveAll(effect => !effect.IsEffectActive());
+        }
+    }
+}

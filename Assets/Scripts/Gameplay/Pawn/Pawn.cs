@@ -4,14 +4,14 @@ using UnityEngine;
 namespace TestGwentGame.Gameplay {
     [RequireComponent(typeof(PawnAction))]
     public sealed class Pawn : MonoBehaviour {
-        [SerializeField] int        _maxHealth = 10;
+        [SerializeField] PawnHealth _health;
         [SerializeField] PawnAction _action;
 
-        BaseTeam _team;
-
-        public PawnHealthInfo HealthInfo { get; } = new();
+        public PawnStatusEffects StatusEffects { get; } = new();
+        
+        public PawnHealth Health => _health;
         public PawnAction Action => _action;
-        public bool IsDead => HealthInfo.IsDead;
+        public bool IsDead => Health.IsDead;
 
         public string DebugName => $"{transform.parent.name}/{gameObject.name}";
 
@@ -19,35 +19,30 @@ namespace TestGwentGame.Gameplay {
 
         void Setup() {
             gameObject.SetActive(true);
-            HealthInfo.Setup(_maxHealth);
+            StatusEffects.Setup(this);
         }
 
         void OnEnable() {
-            HealthInfo.onHealthChanged += OnHealthChanged;
-            EventManager.onTurnStarted.AddListener(HealthInfo.StartTurn);
+            _health.onHealthChanged += OnHealthChanged;
+            EventManager.onTurnStarted.AddListener(StatusEffects.StartTurn);
         }
 
         void OnDisable() {
-            HealthInfo.onHealthChanged -= OnHealthChanged;
-            EventManager.onTurnStarted.RemoveListener(HealthInfo.StartTurn);
+            _health.onHealthChanged -= OnHealthChanged;
+            EventManager.onTurnStarted.RemoveListener(StatusEffects.StartTurn);
         }
 
-        public void Init(BaseTeam team, Action actionUsedCallback) {
-            _team = team;
+        public void Init(Action actionUsedCallback) {
             _action.Setup(actionUsedCallback);
         }
 
         public void Refresh() {
             Setup();
+            _health.Refresh();
         }
 
         public void StartTeamTurn() {
             _action.RefreshUsages();
-        }
-
-        public bool TryUseAction(Pawn target) {
-            var targetType = _team.GetTargetType(this, target);
-            return _action.TryUse(target, targetType);
         }
 
         void Die() {

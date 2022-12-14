@@ -67,11 +67,13 @@ namespace TestGwentGame.UI {
                 return;
             }
 
-            _pawn.TryUseAction(targetPawn);
+            var targetType = GameManager.Instance.GetTargetType(_pawn, targetPawn);
+            _pawn.Action.TryUse(targetPawn, targetType);
+
             gameObject.SetActive(!_pawn.Action.WasUsed);
         }
 
-        void OnTurnStarted() {
+        void OnTurnStarted(int turn) {
             gameObject.SetActive(true);
         }
     }

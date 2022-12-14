@@ -468,6 +468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerTeam: {fileID: 95314733}
   _aiTeam: {fileID: 1205554157}
+  _effectsDatabase: {fileID: 11400000, guid: 099c0a9a1cc6cd043a3d595bbfe13bf5, type: 2}
 --- !u!114 &615169022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,7 +791,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1103036168}
   - component: {fileID: 1103036169}
-  - component: {fileID: 1103036170}
+  - component: {fileID: 1103036173}
+  - component: {fileID: 1103036172}
   - component: {fileID: 1103036171}
   m_Layer: 0
   m_Name: Pawn
@@ -827,21 +829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61775de43f9250647a4494889f9bdfda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 10
-  _action: {fileID: 1103036170}
---- !u!114 &1103036170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1103036167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2395512e71d1c224ebc287255ff46955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 3
+  _health: {fileID: 1103036173}
+  _action: {fileID: 1103036172}
 --- !u!65 &1103036171
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -855,6 +844,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1103036172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103036167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b721c733594c2df4c87e3be080687283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectId: attacc
+--- !u!114 &1103036173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103036167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2eab120e329b146a36514af86a0456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 10
 --- !u!1 &1125129938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,7 +1161,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1404032588}
   - component: {fileID: 1404032589}
-  - component: {fileID: 1404032590}
+  - component: {fileID: 1404032593}
+  - component: {fileID: 1404032592}
   - component: {fileID: 1404032591}
   m_Layer: 0
   m_Name: Pawn
@@ -1183,21 +1199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61775de43f9250647a4494889f9bdfda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 10
-  _action: {fileID: 1404032590}
---- !u!114 &1404032590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1404032587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2395512e71d1c224ebc287255ff46955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 3
+  _health: {fileID: 1404032593}
+  _action: {fileID: 1404032592}
 --- !u!65 &1404032591
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1211,6 +1214,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1404032592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404032587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b721c733594c2df4c87e3be080687283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectId: attacc
+--- !u!114 &1404032593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404032587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2eab120e329b146a36514af86a0456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 10
 --- !u!1 &1643543508
 GameObject:
   m_ObjectHideFlags: 0

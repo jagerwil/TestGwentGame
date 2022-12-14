@@ -1,3 +1,4 @@
+using TestGwentGame.Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +11,10 @@ namespace TestGwentGame.UI {
 
         public Transform DragAndDropRoot => _dragAndDropRoot;
 
-        void Start() {
+        protected override void Awake() {
+            base.Awake();
             _endTurnButton.enabled = true;
+            _endTurnButton.onClick.AddListener(GameManager.Instance.EndPlayerTurn);
         }
 
         void OnEnable() {

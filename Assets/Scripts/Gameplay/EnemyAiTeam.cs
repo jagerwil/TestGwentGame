@@ -14,7 +14,6 @@ namespace TestGwentGame.Gameplay {
             _startTurnCoro = StartCoroutine(StartTurnCoro());
         }
 
-
         public override void Refresh() {
             base.Refresh();
             if (_startTurnCoro != null) {
@@ -25,7 +24,7 @@ namespace TestGwentGame.Gameplay {
         IEnumerator StartTurnCoro() {
             //Code for testing
             foreach (var pawn in _pawns) {
-                var targets = GetPawnTargets(pawn);
+                var targets = GameManager.Instance.GetPawnTargets(pawn);
                 var targetIndex = Random.Range(0, targets.Count);
 
                 var target = targets[targetIndex];
@@ -33,7 +32,7 @@ namespace TestGwentGame.Gameplay {
                 yield return new WaitForSeconds(1f);
                 Debug.Log($"Use effect of pawn {pawn.DebugName} on target {target.DebugName}");
 
-                var targetType = GetTargetType(pawn, target);
+                var targetType = GameManager.Instance.GetTargetType(pawn, target);
                 pawn.Action.TryUse(target, targetType);
             }
         }

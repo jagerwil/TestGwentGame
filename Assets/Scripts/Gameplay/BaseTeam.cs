@@ -8,15 +8,13 @@ namespace TestGwentGame.Gameplay {
         
         public abstract TeamType TeamType { get; }
 
-        public BaseTeam EnemyTeam { get; private set; }
         public List<Pawn> Pawns => _pawns;
 
         void Awake() => gameObject.SetActive(true);
 
-        public void Init(BaseTeam oppositeTeam) {
-            EnemyTeam = oppositeTeam;
+        public void Init() {
             foreach (var pawn in _pawns) {
-                pawn.Init(this, OnPawnUsed);
+                pawn.Init(OnPawnUsed);
             }
         }
 
@@ -43,39 +41,6 @@ namespace TestGwentGame.Gameplay {
 
         public void EndTeamTurn() {
             EventManager.onTeamTurnEnded.Invoke(TeamType);
-        }
-
-        public List<Pawn> GetPawnTargets(Pawn pawn) {
-            var effect     = pawn.Action;
-            var enemyPawns = EnemyTeam.Pawns;
-            var targets    = new List<Pawn>(_pawns.Count + enemyPawns.Count);
-
-            if (effect.CanUseOn(TargetType.Enemy)) {
-                targets.AddRange(enemyPawns);
-            }
-
-            if (effect.CanUseOn(TargetType.Ally)) {
-                targets.AddRange(_pawns.Where(allyPawn => allyPawn != pawn));
-            }
-
-            if (effect.CanUseOn(TargetType.Self)) {
-                targets.Add(pawn);
-            }
-
-            return targets;
-        }
-
-        public TargetType GetTargetType(Pawn pawn, Pawn target) {
-            if (pawn == target) {
-                return TargetType.Self;
-            }
-            
-            var isSameTeam = _pawns.Contains(target);
-            if (isSameTeam) {
-                return TargetType.Ally;
-            }
-
-            return TargetType.Enemy;
         }
 
         void OnPawnDied(Pawn pawn) {
