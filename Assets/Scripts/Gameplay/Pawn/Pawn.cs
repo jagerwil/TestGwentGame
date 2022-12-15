@@ -39,6 +39,7 @@ namespace TestGwentGame.Gameplay {
         public void Refresh() {
             Setup();
             _health.Refresh();
+            StatusEffects.Refresh();
         }
 
         public void StartTeamTurn() {

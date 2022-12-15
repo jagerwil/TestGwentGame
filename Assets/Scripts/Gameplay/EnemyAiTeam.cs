@@ -24,6 +24,10 @@ namespace TestGwentGame.Gameplay {
         IEnumerator StartTurnCoro() {
             //Code for testing
             foreach (var pawn in _pawns) {
+                if ( pawn.IsDead ) {
+                    continue;
+                }
+
                 var targets = GameManager.Instance.GetPawnTargets(pawn);
                 var targetIndex = Random.Range(0, targets.Count);
 

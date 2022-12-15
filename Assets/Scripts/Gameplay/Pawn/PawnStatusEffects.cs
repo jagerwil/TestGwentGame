@@ -9,6 +9,12 @@ namespace TestGwentGame.Gameplay {
             _owner = owner;
         }
 
+        public void Refresh() {
+            foreach (var effect in _statusEffects.Values) {
+                effect.RemoveAllEffects();
+            }
+        }
+
         public void StartTurn(int turn) {
             foreach ( var effectPair in _statusEffects ) {
                 var effect = effectPair.Value;
