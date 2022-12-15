@@ -19,6 +19,12 @@ namespace TestGwentGame.Gameplay {
                 effect.Tick();
             }
 
+            foreach (var effect in _effects) {
+                if (!effect.IsEffectActive()) {
+                    effect.RemoveEffect();
+                }
+            }
+
             _effects.RemoveAll(effect => !effect.IsEffectActive());
         }
     }

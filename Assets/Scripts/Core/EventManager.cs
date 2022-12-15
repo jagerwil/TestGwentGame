@@ -7,8 +7,10 @@ namespace TestGwentGame {
         public static readonly Evt<TeamType> onTeamTurnEnded = new();
         public static readonly Evt<TeamType> onTeamDied = new();
 
-        public static readonly Evt<Pawn> onPawnHealthChanged = new();
         public static readonly Evt<Pawn> onPawnDied = new();
+        public static readonly Evt<Pawn> onPawnHealthChanged = new();
+        public static readonly Evt<Pawn, StatusEffectType> onPawnStatusEffectStarted = new();
+        public static readonly Evt<Pawn, StatusEffectType> onPawnStatusEffectEnded   = new();
 
         public static class Input {
             public static readonly Evt onRefreshKeyPressed = new();

@@ -28,9 +28,6 @@ namespace TestGwentGame.Gameplay {
 
         public virtual void Tick() {
             _turnsLeft -= 1;
-            if (!IsEffectActive()) {
-                RemoveEffect();
-            }
         }
 
         public static BaseStatusEffect SpawnFromEffectType(StatusEffectType type) {
@@ -39,6 +36,10 @@ namespace TestGwentGame.Gameplay {
                     return new AttackStatusEffect();
                 case StatusEffectType.Protection:
                     return new ProtectionStatusEffect();
+                case StatusEffectType.Healing:
+                    return new HealingStatusEffect();
+                case StatusEffectType.Poison:
+                    return new PoisonStatusEffect();
                 default:
                     Debug.LogError($"BaseStatusEffect.SpawnFromEffectType: type '{type}' is not supported");
                     return null;
