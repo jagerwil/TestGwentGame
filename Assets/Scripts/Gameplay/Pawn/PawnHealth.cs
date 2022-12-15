@@ -4,12 +4,12 @@ using UnityEngine;
 namespace TestGwentGame.Gameplay {
     public sealed class PawnHealth : MonoBehaviour {
         [SerializeField] int _maxHealth = 10;
+        int _maxExtraHealth;
 
-        public int  Health { get; private set; }
+        public int Health { get; private set; }
+        public int ExtraHealth { get; private set; }
+
         public bool IsDead => Health <= 0;
-
-        public int ExtraHealth    { get; private set; }
-        public int MaxExtraHealth { get; private set; }
 
         public event Action onHealthChanged;
 
@@ -18,7 +18,7 @@ namespace TestGwentGame.Gameplay {
         void Setup() {
             Health = _maxHealth;
             ExtraHealth = 0;
-            MaxExtraHealth = 0;
+            _maxExtraHealth = 0;
         }
 
         public void Refresh() => Setup();
@@ -29,15 +29,16 @@ namespace TestGwentGame.Gameplay {
         }
 
         public void AddExtraHealth(int deltaHealth) {
-            ExtraHealth    += deltaHealth;
-            MaxExtraHealth += deltaHealth;
-            ExtraHealth = Mathf.Clamp(ExtraHealth, 0, MaxExtraHealth);
+            ExtraHealth += deltaHealth;
+            _maxExtraHealth += deltaHealth;
+
+            ExtraHealth = Mathf.Clamp(ExtraHealth, 0, _maxExtraHealth);
             onHealthChanged?.Invoke();
         }
 
         public void RemoveExtraHealth(int deltaHealth) {
-            MaxExtraHealth -= deltaHealth;
-            ExtraHealth = Mathf.Clamp(ExtraHealth, 0, MaxExtraHealth);
+            _maxExtraHealth -= deltaHealth;
+            ExtraHealth = Mathf.Clamp(ExtraHealth, 0, _maxExtraHealth);
             onHealthChanged?.Invoke();
         }
 
@@ -48,7 +49,7 @@ namespace TestGwentGame.Gameplay {
             ExtraHealth -= deltaHealth;
             damageLeft -= deltaHealth;
 
-            if (damageLeft > 0) {
+            if ( damageLeft > 0 ) {
                 ReduceHealth(damageLeft);
             }
 

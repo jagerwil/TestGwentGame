@@ -24,7 +24,7 @@ namespace TestGwentGame.UI {
         }
 
         public void Refresh() {
-            foreach (var pawnUi in _pawnsUi) {
+            foreach ( var pawnUi in _pawnsUi ) {
                 pawnUi.Refresh();
             }
         }

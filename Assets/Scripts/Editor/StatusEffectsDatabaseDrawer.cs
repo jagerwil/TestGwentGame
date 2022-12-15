@@ -26,8 +26,8 @@ namespace TestGwentGame.Editor {
             }
 
             //Check for effect duplicates
-            for (var i = 0; i < effectsInfo.Count; i++) {
-                for (var j = i + 1; j < effectsInfo.Count; j++) {
+            for ( var i = 0; i < effectsInfo.Count; i++ ) {
+                for ( var j = i + 1; j < effectsInfo.Count; j++ ) {
                     if (effectsInfo[i].Effect == effectsInfo[j].Effect) {
                         SpawnNewEffect(effectsInfo[j]);
                     }

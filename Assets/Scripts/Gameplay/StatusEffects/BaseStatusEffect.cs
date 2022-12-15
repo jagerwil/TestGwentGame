@@ -11,7 +11,7 @@ namespace TestGwentGame.Gameplay {
         
         public abstract StatusEffectType EffectType { get; }
 
-        public BaseStatusEffect() {}
+        protected BaseStatusEffect() {}
 
         protected BaseStatusEffect(int duration) {
             _duration = duration;

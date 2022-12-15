@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 namespace TestGwentGame.Gameplay {
-    public class PawnAction : MonoBehaviour {
+    public sealed class PawnAction : MonoBehaviour {
         [SerializeField] string _effectId;
 
         Action _actionUsedCallback;
@@ -36,8 +36,8 @@ namespace TestGwentGame.Gameplay {
             _actionUsedCallback = actionUsedCallback;
         }
 
-        public virtual bool TryUse(Pawn target, TargetType targetType) {
-            if (!CanUseOn(targetType)) {
+        public bool TryUse(Pawn target, TargetType targetType) {
+            if ( !CanUseOn(targetType) ) {
                 return false;
             }
 

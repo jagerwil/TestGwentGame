@@ -5,7 +5,7 @@ namespace TestGwentGame {
         public static T Instance { get; private set; }
 
         protected virtual void Awake() {
-            if (Instance && this != Instance) {
+            if ( Instance && this != Instance ) {
                 Debug.LogError($"Error: scene contains multiple singletons of type {typeof(T).Name}");
                 Destroy(this);
                 return;

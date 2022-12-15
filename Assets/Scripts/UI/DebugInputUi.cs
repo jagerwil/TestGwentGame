@@ -23,12 +23,12 @@ namespace TestGwentGame.UI {
         }
 
         void Update() {
-            if (_timeUntilHide <= 0f) {
+            if ( _timeUntilHide <= 0f ) {
                 return;
             }
 
             _timeUntilHide -= Time.deltaTime;
-            if (_timeUntilHide <= 0f) {
+            if ( _timeUntilHide <= 0f ) {
                 _text.gameObject.SetActive(false);
             }
         }

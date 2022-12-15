@@ -71,7 +71,7 @@ namespace TestGwentGame.UI {
             }
 
             var targetPawn = hit.transform.GetComponent<Pawn>();
-            if (!targetPawn) {
+            if ( !targetPawn ) {
                 return;
             }
 

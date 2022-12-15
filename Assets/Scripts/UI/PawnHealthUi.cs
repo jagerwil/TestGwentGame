@@ -9,7 +9,7 @@ namespace TestGwentGame.UI {
             var hasHealth = health > 0;
             gameObject.SetActive(hasHealth);
 
-            if (!hasHealth) {
+            if ( !hasHealth ) {
                 return;
             }
             _text.text = health.ToString();

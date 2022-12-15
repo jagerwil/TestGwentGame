@@ -16,10 +16,10 @@ namespace TestGwentGame {
         public List<StatusEffectInfo> Effects => _effects;
 
         public TargetType GetTargetType(StatusEffectType type) {
-            if (_effectTypesDict == null) {
+            if ( _effectTypesDict == null ) {
                 SetupDictionaries();
             }
-            if (_effectTypesDict.TryGetValue(type, out var targetType)) {
+            if ( _effectTypesDict.TryGetValue(type, out var targetType) ) {
                 return targetType;
             }
             return TargetType.None;
@@ -27,10 +27,10 @@ namespace TestGwentGame {
 
         [CanBeNull]
         public StatusEffectInfo GetStatusEffectInfo(string id) {
-            if (_effectsDict == null) {
+            if ( _effectsDict == null ) {
                 SetupDictionaries();
             }
-            if (_effectsDict.TryGetValue(id, out var effectInfo)) {
+            if ( _effectsDict.TryGetValue(id, out var effectInfo) ) {
                 return effectInfo;
             }
             return null;

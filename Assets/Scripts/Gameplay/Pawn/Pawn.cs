@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 
 namespace TestGwentGame.Gameplay {
+    [RequireComponent(typeof(PawnHealth))]
     [RequireComponent(typeof(PawnAction))]
     public sealed class Pawn : MonoBehaviour {
         [SerializeField] PawnHealth _health;
@@ -12,8 +13,6 @@ namespace TestGwentGame.Gameplay {
         public PawnHealth Health => _health;
         public PawnAction Action => _action;
         public bool IsDead => Health.IsDead;
-
-        public string DebugName => $"{transform.parent.name}/{gameObject.name}";
 
         void Awake() => Setup();
 

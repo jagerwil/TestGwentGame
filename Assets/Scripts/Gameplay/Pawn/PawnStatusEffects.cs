@@ -10,7 +10,7 @@ namespace TestGwentGame.Gameplay {
         }
 
         public void Refresh() {
-            foreach (var effect in _statusEffects.Values) {
+            foreach ( var effect in _statusEffects.Values ) {
                 effect.RemoveAllEffects();
             }
         }
@@ -20,7 +20,7 @@ namespace TestGwentGame.Gameplay {
                 var effect = effectPair.Value;
                 var effectType = effectPair.Key;
 
-                if (!effect.HasEffects) {
+                if ( !effect.HasEffects ) {
                     continue;
                 }
 
