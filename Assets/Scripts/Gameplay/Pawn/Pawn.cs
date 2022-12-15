@@ -47,7 +47,6 @@ namespace TestGwentGame.Gameplay {
         }
 
         void Die() {
-            Debug.Log("Pawn is ded");
             gameObject.SetActive(false);
             EventManager.onPawnDied.Invoke(this);
         }

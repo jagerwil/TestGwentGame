@@ -121,7 +121,6 @@ namespace TestGwentGame.Gameplay {
 
         void EndTurn() {
             _currentTurn += 1;
-            Debug.Log($"Turn {_currentTurn}");
             EventManager.onTurnStarted.Invoke(_currentTurn);
         }
 

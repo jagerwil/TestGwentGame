@@ -9,10 +9,10 @@ namespace TestGwentGame.Gameplay {
         [SerializeField] List<Pawn> _prefabs;
 
         protected List<Pawn> _pawns = new();
-        
-        public abstract TeamType TeamType { get; }
 
         public List<Pawn> Pawns => _pawns;
+        
+        protected abstract TeamType TeamType { get; }
 
         void Awake() => gameObject.SetActive(true);
 
@@ -67,7 +67,6 @@ namespace TestGwentGame.Gameplay {
 
         void OnPawnDied(Pawn pawn) {
             if (_pawns.All(pawn => pawn.IsDead)) {
-                Debug.Log("The entire team is ded!");
                 gameObject.SetActive(false);
                 EventManager.onTeamDied.Invoke(TeamType);
             }
