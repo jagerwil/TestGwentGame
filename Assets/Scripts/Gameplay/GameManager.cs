@@ -23,6 +23,7 @@ namespace TestGwentGame.Gameplay {
 
         void OnEnable() {
             EventManager.onTeamTurnEnded.AddListener(OnTeamTurnEnded);
+            EventManager.onTeamDied.AddListener(OnTeamDied);
 
             EventManager.Input.onRefreshKeyPressed.AddListener(Refresh);
             EventManager.Input.onEndTurnKeyPressed.AddListener(EndPlayerTurn);
@@ -30,6 +31,7 @@ namespace TestGwentGame.Gameplay {
 
         void OnDisable() {
             EventManager.onTeamTurnEnded.RemoveListener(OnTeamTurnEnded);
+            EventManager.onTeamDied.RemoveListener(OnTeamDied);
 
             EventManager.Input.onRefreshKeyPressed.RemoveListener(Refresh);
             EventManager.Input.onEndTurnKeyPressed.RemoveListener(EndPlayerTurn);
@@ -84,6 +86,7 @@ namespace TestGwentGame.Gameplay {
         }
 
         void Setup() {
+            _isGameEnded = false;
             _currentTeam = _playerTeam;
             _currentTurn = 0;
             EndTurn();
@@ -132,6 +135,7 @@ namespace TestGwentGame.Gameplay {
         }
 
         void OnTeamTurnEnded(TeamType teamType) => SwitchSides();
+        void OnTeamDied(TeamType teamType) => _isGameEnded = true;
     }
 }
 
