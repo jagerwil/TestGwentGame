@@ -34,12 +34,18 @@ MonoBehaviour:
       rid: 9055167984353148947
     Icon: {fileID: 21300000, guid: 3727c111bd03be84db2eee8b123567ea, type: 3}
     IconColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
-  - Id: no_attacc
-    Type: 1
+  - Id: heal_pls
+    Type: 3
     Effect:
-      rid: 9055167984353148948
-    Icon: {fileID: 21300000, guid: a0ef9ba266ad9ab498c88034305d6f7e, type: 3}
-    IconColor: {r: 0.41509432, g: 0.2907548, b: 0.045033827, a: 1}
+      rid: 9055167988134052380
+    Icon: {fileID: 21300000, guid: 6978bf9b9f8c7dc4ab989732d5b4bd32, type: 3}
+    IconColor: {r: 0.10980393, g: 1, b: 0.2392157, a: 1}
+  - Id: sssnake
+    Type: 2
+    Effect:
+      rid: 9055167988134052405
+    Icon: {fileID: 21300000, guid: 8cd03cd174b7a2a458beb81b62070fa5, type: 3}
+    IconColor: {r: 0.5176471, g: 0.6509804, b: 0, a: 1}
   references:
     version: 2
     RefIds:
@@ -53,8 +59,13 @@ MonoBehaviour:
       data:
         _duration: 3
         _extraHealth: 2
-    - rid: 9055167984353148948
-      type: {class: ProtectionStatusEffect, ns: TestGwentGame.Gameplay, asm: Assembly-CSharp}
+    - rid: 9055167988134052380
+      type: {class: HealingStatusEffect, ns: TestGwentGame.Gameplay, asm: Assembly-CSharp}
       data:
         _duration: 0
-        _extraHealth: 0
+        _healing: 1
+    - rid: 9055167988134052405
+      type: {class: PoisonStatusEffect, ns: TestGwentGame.Gameplay, asm: Assembly-CSharp}
+      data:
+        _duration: 2
+        _damage: 1
