@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Demo_Gorgon
+  m_Controller: {fileID: 9100000, guid: 97fee009d3ab9714ea6df99a982389a6, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 5456200507052285342, guid: 70651575625c68e42a1c554fd74b35b8, type: 3}
+    m_OverrideClip: {fileID: -3166915326123763129, guid: d1c031aa07bd454438a262e0c4c453a9, type: 3}
